@@ -5,13 +5,12 @@ before_install:
 install:
 - pip install ansible
 addons:
-  sonarqube: true
-env:
-  global:
-  - secure: aitBvvioQip8+w0ltu45EJ5e7iL0atu5LF/sC5Gj3x057xC1dwk6bK/zeLJY+8r0cPjWuPTCUEGzk06B+kdxntjqOcqDcpFxgPt2EaAmvHeKED7ABXnDf9Bpknqxbz+U+f8O9XIhyatrs9UoNDdwuwCkI/+EjqE9lDVGzvbQmcYDdXdGxQMhrvTw9WlzsY26KZqXkpQwP/sh4vZ//ak6OSXHsQztm5ec3ip+dZwfZt14NKHYGbZzyvWigKopzVuGRTKjkZqqslq+6osfgWICTk3wEZgU5Jn1tGtC8zF7qHEd8WrfD7s3reN/bLGNz5Fn+TL+mVgdSjRtsGYgrkAE6TfoMB49+2/Uz4VJS9n6nnu3+WPpRKtIXgfPtwttmanUs7BoksGx7+DiJurv/IBq4cNXKPj1XQ+dquaFZ1QpzQToOfLsycKNAE6b3D92oXmfVlUOF/Wjk89fJunbYXC/Q6QXF3X92gSG/95se8bsoB4DKUSZHv8wbWpRrVikVamR4INyTAVrBYu+m9feYC4Mf9pRHwbTQxfZul2THEJxzOZpy0+PWLi8Rk3S/GxWu01iK6OxdjUUULJrbBzAmPONg8+k8LbTeJ5MT3fga8w6RsTAz6S8gXJj8jF1kEd1Rtd4FmzuzcMJAYGwZ+cPCIMgL+2qu9ajYKu3dOpaY5hbzsY=
+  sonarqube:
+    token:
+      secure: sxjon//QurqnGHzXGdzClZeazAtaud3ONoQpVYowAhbIBenM1UzN4Y9ru+qtwkprYzLu59kt/XGTDEF37jqEKnE0b6mLkFzRvlqCmX/pXTFeT27kOiE0B79I7u9RxkU4lnrni/gTKi5gC4RsD+vkrptykRWW0I9KbNMjh6hwuLX+Mx66A3jk5U0T05JpJMahJxWzInzMIAF+GSdB43XalyHXpVuzdlS0JxIhHvBP8qvZVUHzrGTxOXIGiygHJWuUjPRvrre7cnLjetCBjKJuv6pw/Q5Mho8G25UyifDBpIFh9LaRx/7ucNvZ+j3tIFanhgeFtNwnPRu7Q0ishm6v/DzryDLcenfBiWB+/zugtW+SW9rMZZmBDDhvz0K1PDxidC7xrGN5gyljah7E5ZPRNBbzP3Rb1HO3mtPFv/1XAEveGQM8jyKOsloHO0DqonTDtKiQFAO1K7s6A3DgFFjEvw/cYrE0LKhX0RZuxWch8LRlLf6ZQgXxRzH/kTJSlvpevnXOvIFI1k/iQB9wMaJ4SD7f501qhaJ++1s4PXikEoE3s9hdc31ctnKTyNErg/AqRDkaxs/IF2tho4PGYbJrqnjc7abHtezarQ9vRpR0cnPpPTvXz8OdYAYmt9nXnZb1+AH8Ylbk6L8q6hzlY9kv78beZNQKnNlZrErP0mtV+VI=
 
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
 - bash -lec "gradle sonar"
-- bash -lec "sonar-scanner -Dsonar.login=$SONAR_TOKEN"
+- bash -lec "sonar-scanner"
