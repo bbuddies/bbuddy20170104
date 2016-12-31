@@ -5,9 +5,7 @@ before_install:
 install:
 - pip install ansible
 addons:
-  sonarqube:
-    token:
-      secure: sxjon//QurqnGHzXGdzClZeazAtaud3ONoQpVYowAhbIBenM1UzN4Y9ru+qtwkprYzLu59kt/XGTDEF37jqEKnE0b6mLkFzRvlqCmX/pXTFeT27kOiE0B79I7u9RxkU4lnrni/gTKi5gC4RsD+vkrptykRWW0I9KbNMjh6hwuLX+Mx66A3jk5U0T05JpJMahJxWzInzMIAF+GSdB43XalyHXpVuzdlS0JxIhHvBP8qvZVUHzrGTxOXIGiygHJWuUjPRvrre7cnLjetCBjKJuv6pw/Q5Mho8G25UyifDBpIFh9LaRx/7ucNvZ+j3tIFanhgeFtNwnPRu7Q0ishm6v/DzryDLcenfBiWB+/zugtW+SW9rMZZmBDDhvz0K1PDxidC7xrGN5gyljah7E5ZPRNBbzP3Rb1HO3mtPFv/1XAEveGQM8jyKOsloHO0DqonTDtKiQFAO1K7s6A3DgFFjEvw/cYrE0LKhX0RZuxWch8LRlLf6ZQgXxRzH/kTJSlvpevnXOvIFI1k/iQB9wMaJ4SD7f501qhaJ++1s4PXikEoE3s9hdc31ctnKTyNErg/AqRDkaxs/IF2tho4PGYbJrqnjc7abHtezarQ9vRpR0cnPpPTvXz8OdYAYmt9nXnZb1+AH8Ylbk6L8q6hzlY9kv78beZNQKnNlZrErP0mtV+VI=
+  sonarqube: true
 
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
