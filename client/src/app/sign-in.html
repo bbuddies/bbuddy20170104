@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form-signin" method="post" ng-submit="$ctrl.signIn($ctrl.credential)">
+    <form class="form-signin" method="post" ng-submit="$ctrl.signIn()">
         <h2 class="form-signin-heading">Sign In</h2>
         <div class="alert alert-{{type}}" role="alert">
             {{$ctrl.message}}
@@ -8,6 +8,6 @@
         <input type="username" id="username" name="username" class="form-control" placeholder="User Name" required autofocus ng-model="$ctrl.credential.username"/>
         <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required ng-model="$ctrl.credential.password" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit {{$ctrl.credential.username}}</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form>
 </div>

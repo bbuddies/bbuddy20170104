@@ -4,17 +4,20 @@ import authentication from './authentication'
 class SignInController {
     constructor(authentication, $state){
         this.credential = {
-            username: 'user',
+            username: '',
             password: ''
         }
+        this.message = ""
         this.authentication = authentication
         this.$state = $state
     }
-    signIn(credential) {
-        let {authentication, $state} = this
-        authentication.authenticate(credential.username, credential.password)
-            .then(() => {
+    signIn() {
+        let {authentication, $state, credential} = this
+        authentication.authenticate(credential,
+            () => {
                 $state.go('dashboard')
+            }, () => {
+                this.message = "Invalid username and password."
             })
     }
 }
