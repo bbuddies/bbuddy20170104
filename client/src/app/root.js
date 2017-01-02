@@ -1,19 +1,11 @@
 import angular from 'angular'
-import common from './app.js'
-import dashboard from './dashboard.js'
-import auth from './sign-in.js'
+import {app, routing, http} from './common'
 import router from 'angular-ui-router'
-import routing from './routing'
-import http from './http'
-import accounts from './accounts'
-
-var root = {
-    template: require('./root.html')
-}
+import components from './components'
 
 export default angular
-    .module('root', [ router, common, dashboard, auth, accounts ])
-    .component('root', root)
+    .module('root', [ router, app, components ])
+    .component('root', { template: require('./root.html') })
     .config(routing)
     .config(http)
     .name

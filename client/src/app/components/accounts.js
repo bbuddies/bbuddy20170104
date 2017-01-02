@@ -1,14 +1,5 @@
 import angular from 'angular'
-
-class AccountsController{
-    constructor($http) {
-        var self = this
-        $http.get("http://localhost:8090/accounts/list.json").success((data)=>{
-            self.accounts = data;
-        })
-    }
-
-}
+import AccountsController from './accounts.controller'
 let accounts = {
     template: require('./accounts.html'),
     controller: AccountsController

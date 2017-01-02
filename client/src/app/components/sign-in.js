@@ -1,6 +1,8 @@
 import angular from 'angular'
 import authentication from './authentication'
+import {Inject} from '../common/decorators'
 
+@Inject('authentication', '$state')
 class SignInController {
     constructor(authentication, $state){
         this.credential = {
@@ -21,7 +23,6 @@ class SignInController {
             })
     }
 }
-SignInController.$inject = ['authentication', '$state']
 
 let signIn = {
     bindings: {
@@ -35,27 +36,27 @@ function routing($stateProvider, $urlRouterProvider){
     $stateProvider
         .state('auth', {
             redirectTo: 'auth.signIn',
-            url: '/auth',
+            url: '/app',
             template: '<div ui-view></div>'
         })
         .state('auth.signIn', {
             url: '/signin',
             component: 'signIn'
         });
-    $urlRouterProvider.otherwise('/auth/signin');
+    $urlRouterProvider.otherwise('/app/signin');
 }
 routing.$inject = ['$stateProvider', '$urlRouterProvider']
 
 function authenticating($transitions, $state, authentication){
     $transitions.onStart({
         to: function (state) {
-            return !!(state.data && state.data.requireAuth);
+            return !!(state.data && state.data.requireAuth)
         }
     }, function() {
         if (!authentication.isAuthenticated()){
             return $state.target('auth.signIn')
         }
-    });
+    })
 }
 authenticating.$inject = ['$transitions', '$state', 'authentication']
 

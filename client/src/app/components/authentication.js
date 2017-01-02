@@ -1,9 +1,12 @@
+import {Inject} from '../common/decorators'
+
+@Inject('$http')
 export default class Authentication {
     constructor($http){
         this.authenticated= false
         this.$http = $http
     }
-    authenticate(credential, success, fail) {
+    authenticate(credential, success=()=>{}, fail=()=>{}) {
         this.$http.post("http://localhost:8090/signin",
             `username=${credential.username}&password=${credential.password}`,
             {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
@@ -16,5 +19,3 @@ export default class Authentication {
         return !!this.authenticated
     }
 }
-
-Authentication.$inject = ['$http']
