@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import '../../sass/layout.css'
+import '../../../sass/layout.css'
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
-import header from './header.js'
-import sidebar from './sidebar.js'
+import header from './header'
+import sidebar from './sidebar'
 
 
 let app = {
