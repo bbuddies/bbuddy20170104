@@ -29,12 +29,14 @@ public class BudgetSteps {
         uiDriver.findElementByName("month").sendKeys(budget.getMonth());
         uiDriver.findElementByName("amount").sendKeys(budget.getAmount());
         uiDriver.findElementById("addBudget").click();
+        Thread.sleep(1000);
     }
 
     @Then("^I can see the following budget$")
     public void i_can_see_the_following_budget(List<Budget> expectedBudgets) throws Throwable {
         Budget budget = budgetsRepo.findAll().get(0);
         Budget expected = expectedBudgets.get(0);
-        assertThat(budget).isEqualToComparingFieldByField(expected);
+        assertThat(budget.getMonth()).isEqualTo(expected.getMonth());
+        assertThat(budget.getAmount()).isEqualTo(expected.getAmount());
     }
 }
