@@ -1,4 +1,5 @@
 import angular from 'angular'
+import Controller from './add.controller'
 
 function routing($stateProvider) {
     $stateProvider
@@ -17,6 +18,7 @@ export default angular
     .module('budgets.add', [])
     .component('budgetsAdd', {
         template: require('./add.html'),
+        controller: Controller
     })
     .config(routing)
     .name

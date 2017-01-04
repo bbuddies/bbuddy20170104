@@ -1,18 +1,24 @@
 package com.odde.bbuddy.acceptancetest.steps;
 
+import com.odde.bbuddy.acceptancetest.data.budget.BudgetsRepoForTest;
 import com.odde.bbuddy.acceptancetest.data.budget.EditableBudget;
 import com.odde.bbuddy.acceptancetest.driver.UiDriver;
-import cucumber.api.DataTable;
+import com.odde.bbuddy.budget.domain.Budget;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class BudgetSteps {
 
     @Autowired
     UiDriver uiDriver;
+
+    @Autowired
+    BudgetsRepoForTest budgetsRepo;
 
     @When("^add a budget with the following info$")
     public void add_a_budget_with_the_following_info(List<EditableBudget> budgets) throws Throwable {
@@ -26,6 +32,9 @@ public class BudgetSteps {
     }
 
     @Then("^I can see the following budget$")
-    public void i_can_see_the_following_budget(DataTable arg1) throws Throwable {
+    public void i_can_see_the_following_budget(List<Budget> expectedBudgets) throws Throwable {
+        Budget budget = budgetsRepo.findAll().get(0);
+        Budget expected = expectedBudgets.get(0);
+        assertThat(budget).isEqualToComparingFieldByField(expected);
     }
 }
