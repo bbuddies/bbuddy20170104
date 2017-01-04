@@ -1,12 +1,12 @@
 import {Inject} from '../../common/decorators'
 
-@Inject()
+@Inject('budgetsModel')
 export default class BudgetsAddController {
     constructor(budgets) {
         this.budgets = budgets
         this.budget = {
             month: '',
-            amount: 0
+            amount: ''
         }
     }
     save(){

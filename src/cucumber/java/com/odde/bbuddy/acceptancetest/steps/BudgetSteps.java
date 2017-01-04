@@ -28,7 +28,7 @@ public class BudgetSteps {
         EditableBudget budget = budgets.get(0);
         uiDriver.findElementByName("month").sendKeys(budget.getMonth());
         uiDriver.findElementByName("amount").sendKeys(budget.getAmount());
-        uiDriver.findElementById("save").click();
+        uiDriver.findElementById("addBudget").click();
     }
 
     @Then("^I can see the following budget$")

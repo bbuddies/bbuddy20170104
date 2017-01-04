@@ -1,5 +1,6 @@
 import angular from 'angular'
 import Controller from './add.controller'
+import Model from './budgets.model'
 
 function routing($stateProvider) {
     $stateProvider
@@ -21,5 +22,6 @@ export default angular
         controller: Controller
     })
     .config(routing)
+    .service('budgetsModel', Model)
     .name
 
