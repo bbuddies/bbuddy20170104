@@ -6,7 +6,7 @@ spring:
       ddl-auto: create
 
 server:
-  port: 8090
+  port: 8110
 
 cucumber:
   port: 8100

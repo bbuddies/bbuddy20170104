@@ -41,5 +41,5 @@ task addCodeCoverageForAllTests << {
 }
 
 task sonar {
-    runInSequence(it, "addCodeCoverageForAllTests", "ci", "copyDependencyLibraries", "copyTestDependencyLibraries", "updateUnitTestResults")
+    runInSequence(it, "addCodeCoverageForAllTests", "frontendci", "copyDependencyLibraries", "copyTestDependencyLibraries", "updateUnitTestResults")
 }
