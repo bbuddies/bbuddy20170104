@@ -48,4 +48,10 @@ public class BudgetSteps {
             budgetsRepo.save(budget);
         }
     }
+
+    @Then("^I can see error message$")
+    public void i_can_see_error_message() throws Throwable {
+        assertThat(uiDriver.findElementById("errorMessage").getText()).isEqualTo("Invalid input.");
+    }
+
 }

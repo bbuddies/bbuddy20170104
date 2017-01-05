@@ -19,3 +19,9 @@ Feature: Add Budget
     Then I can see the following budget
       | month   | amount |
       | 2016-02 | 3000   |
+
+  Scenario: Invalid month
+    When add a budget with the following info
+      | month   | amount |
+      | 2016-13 | 3000   |
+    Then I can see error message
