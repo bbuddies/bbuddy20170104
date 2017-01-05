@@ -19,3 +19,16 @@ Feature: Add Budget
     Then I can see the following budget
       | month   | amount |
       | 2016-02 | 3000   |
+
+  Scenario Outline: check budget input empty
+    When add a budget with the following info
+    | month | amount |
+    | <month> | <amount>|
+    Then I can see empty error massage
+
+    Examples:
+      | month   | amount |
+      | 2016-04 |        |
+      |         | 3000   |
+      |         |        |
+

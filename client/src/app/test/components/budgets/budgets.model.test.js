@@ -19,4 +19,6 @@ describe('budgets model', function() {
             amount: 1000
         })
     })
+
 })
+

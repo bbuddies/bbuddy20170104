@@ -48,4 +48,11 @@ public class BudgetSteps {
             budgetsRepo.save(budget);
         }
     }
+
+    @Then("^I can see empty error massage$")
+    public void i_can_see_empty_error_massage() throws Throwable {
+
+
+    }
+
 }

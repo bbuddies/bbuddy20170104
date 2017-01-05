@@ -8,8 +8,19 @@ export default class BudgetsAddController {
             month: '',
             amount: ''
         }
+        this.MonthEmptyErrorMessage = ''
+        this.AmountEmptyErrorMassage = ''
     }
     save(){
-        this.budgets.add(this.budget)
+        if(this.budget.month && this.budget.amount){
+            this.budgets.add(this.budget)
+        }
+        if(!this.budget.month){
+            this.MonthEmptyErrorMessage = 'Month is empty'
+        }
+        if(!this.budget.amount){
+            this.AmountEmptyErrorMassage = 'Amount is empty'
+        }
+
     }
 }
