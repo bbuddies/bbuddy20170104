@@ -46,19 +46,19 @@ describe('budgets add controller', () => {
             add.should.not.have.been.called
     })
 
-     it('add a empty month and amount budget', () => {
-            let model = {
-                add: () => {}
-            }
-            let add = sinon.stub(model, 'add')
-            let controller = new Controller(model)
-            controller.budget.month = ''
-            controller.budget.amount = 0
+    it('add a empty month and amount budget', () => {
+        let model = {
+            add: () => {}
+        }
+        let add = sinon.stub(model, 'add')
+        let controller = new Controller(model)
+        controller.budget.month = ''
+        controller.budget.amount = 0
 
-            controller.save()
+        controller.save()
 
-            add.should.not.have.been.called
-     })
+        add.should.not.have.been.called
+    })
 
     it('Invalid month input', () => {
        let model = {
@@ -75,7 +75,6 @@ describe('budgets add controller', () => {
             month: "2016-13",
             amount: 1000
         })
-        controller.errorMessage.should.equal("Invalid input.")
     })
     it('Check invalid month input', () => {
        let model = {
