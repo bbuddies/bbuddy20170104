@@ -6,6 +6,7 @@ before_install:
 - nvm use 6.1
 install:
 - pip install ansible
+- npm install -g gulp-cli
 addons:
   sonarqube: true
 
