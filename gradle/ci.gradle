@@ -2,9 +2,21 @@ task ci {
     runInSequence(it, "clean", "check", "cucumber")
 }
 
+task setFrontendCucumber {
+    cucumber {
+        jvmOptions {
+            environment "SPRING_PROFILES_ACTIVE", "frontendtest"
+        }
+        tags = ['@budget']
+    }
+}
+
+task frontendci {
+    runInSequence(it, "clean", "check", "setFrontendCucumber", "cucumber")
+}
+
 cucumber {
     jvmOptions {
-        environment "SPRING_PROFILES_ACTIVE", "test"
         commandLineArg "port", { port ->
             environment "SERVER_PORT", port
         }
