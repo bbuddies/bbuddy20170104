@@ -54,4 +54,9 @@ public class BudgetSteps {
         assertThat(uiDriver.findElementById("errorMessage").getText()).isEqualTo("Invalid input.");
     }
 
+    @Then("^I can see error info")
+    public void i_can_see_error_info() throws Throwable {
+
+    }
+
 }

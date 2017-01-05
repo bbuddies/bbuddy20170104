@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class BudgetsTest {
     
@@ -50,5 +48,18 @@ public class BudgetsTest {
         assertThat(captor.getValue().getAmount()).isEqualTo(3000);
         assertThat(captor.getValue().getMonth()).isEqualTo("2016-02");
 
+    }
+
+    @Test
+    public void InputInvalid() {
+        BudgetRepo mockBudgetRepo = mock(BudgetRepo.class);
+        Budgets budgets = new Budgets(mockBudgetRepo);
+
+        Budget budget = new Budget();
+        budget.setAmount(-1000);
+        budget.setMonth("2016-02");
+        budgets.add(budget);
+
+        verify(mockBudgetRepo,never()).save(budget);
     }
 }

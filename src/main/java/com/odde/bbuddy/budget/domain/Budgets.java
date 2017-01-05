@@ -17,13 +17,15 @@ public class Budgets {
 
     public void add(Budget budget) {
         List<Budget> budgetlist = budgetRepo.findAll();
-        for (Budget budgetItem:budgetlist){
-            if (budgetItem.getMonth().equals(budget.getMonth())){
-                budgetItem.setAmount(budget.getAmount());
-                budgetRepo.save(budgetItem);
-                return;
+        if (budget.getAmount()>=0) {
+            for (Budget budgetItem : budgetlist) {
+                if (budgetItem.getMonth().equals(budget.getMonth())) {
+                    budgetItem.setAmount(budget.getAmount());
+                    budgetRepo.save(budgetItem);
+                    return;
+                }
             }
+            budgetRepo.save(budget);
         }
-        budgetRepo.save(budget);
     }
 }
