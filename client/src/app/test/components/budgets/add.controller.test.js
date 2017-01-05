@@ -1,15 +1,18 @@
 import Controller from '../../../components/budgets/add.controller';
 
 describe('budgets add controller', () => {
-    it('add a budget successfully', () => {
-        let model = {
-            add: () => {}
+    let model, add, controller
+    beforeEach(() => {
+        model = {
+            add: () => {
+            }
         }
-        let add = sinon.stub(model, 'add')
-        let controller = new Controller(model)
+        add = sinon.stub(model, 'add')
+        controller = new Controller(model)
         controller.budget.month = '2016-02'
         controller.budget.amount = 1000
-
+    })
+    it('add a budget successfully', () => {
         controller.save()
 
         add.should.have.been.calledWith({
@@ -19,88 +22,57 @@ describe('budgets add controller', () => {
     })
 
     it('add a empty month budget', () => {
-        let model = {
-            add: () => {}
-        }
-        let add = sinon.stub(model, 'add')
-        let controller = new Controller(model)
         controller.budget.month = ''
-        controller.budget.amount = 1000
 
         controller.save()
 
         add.should.not.have.been.called
+        controller.monthErrorMessage.should.equal("Month is empty")
     })
+    // it('add a empty month budget', () => {
+    //     controller.budget.month = ''
+    //
+    //     controller.save()
+    //     controller.budget.month = '2016-10'
+    //
+    //     controller.monthErrorMessage.should.be.empty
+    // })
 
     it('add a empty amount budget', () => {
-            let model = {
-                add: () => {}
-            }
-            let add = sinon.stub(model, 'add')
-            let controller = new Controller(model)
-            controller.budget.month = '2016-12'
-            controller.budget.amount = 0
+        controller.budget.amount = ''
 
-            controller.save()
+        controller.save()
 
-            add.should.not.have.been.called
+        add.should.not.have.been.called
+        controller.amountErrorMessage.should.equal("Amount is empty")
     })
 
     it('add a empty month and amount budget', () => {
-        let model = {
-            add: () => {}
-        }
-        let add = sinon.stub(model, 'add')
-        let controller = new Controller(model)
         controller.budget.month = ''
-        controller.budget.amount = 0
+        controller.budget.amount = ''
 
         controller.save()
 
         add.should.not.have.been.called
+        controller.monthErrorMessage.should.equal("Month is empty")
+        controller.amountErrorMessage.should.equal("Amount is empty")
     })
 
     it('Invalid month input', () => {
-       let model = {
-                add: () => {}
-            }
-        let add = sinon.stub(model, 'add')
-        let controller = new Controller(model)
         controller.budget.month = "2016-13"
-        controller.budget.amount = 1000
 
         controller.save()
 
-        add.should.not.have.been.calledWith({
-            month: "2016-13",
-            amount: 1000
-        })
-    })
-    it('Check invalid month input', () => {
-       let model = {
-                    add: () => {}
-                }
-        let add = sinon.stub(model, 'add')
-        let controller = new Controller(model)
-        controller.budget.month = "2016-13"
-        controller.budget.amount = 1000
-
-        let result = controller.checkInput()
-
-        result.should.be.false
+        add.should.not.have.been.called
+        controller.monthErrorMessage.should.equal("Invalid input.")
     })
     it('Check invalid amount input', () => {
-           let model = {
-                        add: () => {}
-                    }
-            let add = sinon.stub(model, 'add')
-            let controller = new Controller(model)
-            controller.budget.month = "2016-10"
-            controller.budget.amount = -1000
+        controller.budget.amount = -1000
 
-            let result = controller.checkInput()
+        controller.save()
 
-            result.should.be.false
+        add.should.not.have.been.called
+        controller.amountErrorMessage.should.equal("Invalid input.")
     })
 
 

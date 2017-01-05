@@ -8,40 +8,43 @@ export default class BudgetsAddController {
             month: '',
             amount: ''
         }
-        this.MonthErrorMessage = ''
-        this.AmountErrorMassage = ''
+        this.monthErrorMessage = ''
+        this.amountErrorMessage = ''
     }
     checkInput() {
-
+        let valid = true
         if(!this.budget.month){
-            this.MonthErrorMessage = 'Month is empty'
-            return false
+            this.monthErrorMessage = 'Month is empty'
+            valid = false
          }
         if(!this.budget.amount){
-             this.AmountErrorMassage = 'Amount is empty'
-             return false
+             this.amountErrorMessage = 'Amount is empty'
+             valid = false
          }
 
-        if (this.budget.month.length != 7) {
-            this.MonthErrorMessage = 'Invalid input.'
-            return false
+        if (valid && this.budget.month.length != 7) {
+            this.monthErrorMessage = 'Invalid input.'
+            valid = false
         }
         let year = this.budget.month.substring(0,4)
         let month = this.budget.month.substring(5,7)
         let int_month = parseInt(month)
-        if (int_month < 0 || int_month > 12) {
-            this.MonthErrorMessage = 'Invalid input.'
-            return false
+        if (valid && (int_month < 0 || int_month > 12)) {
+            this.monthErrorMessage = 'Invalid input.'
+            valid = false
         }
-        if (this.budget.amount < 0) {
-             this.MonthErrorMessage = 'Invalid input.'
-             return false
+        if (valid && this.budget.amount < 0) {
+             this.amountErrorMessage = 'Invalid input.'
+             valid = false
         }
-        return true
+        return valid
     }
     save(){
         if (this.checkInput()) {
-            this.budgets.add(this.budget)
+            this.budgets.add(this.budget, (errors)=>{
+                this.monthErrorMessage = errors.monthErrorMessage
+                this.amountErrorMessage = errors.amountErrorMessage
+            })
         }
     }
 }
