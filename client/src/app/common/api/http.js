@@ -4,7 +4,7 @@ import {Inject} from '../decorators'
 export default class Http{
     constructor($http) {
         this.$http = $http
-        this.hostUrl = 'http://localhost:8090/'
+        this.hostUrl = 'http://localhost:8110/'
     }
     url(path) {
         return `${this.hostUrl}${path}`
