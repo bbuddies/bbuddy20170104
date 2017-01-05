@@ -47,4 +47,17 @@ describe('budgets add controller', () => {
 
         result.should.be.false
     })
+    it('Check invalid amount input', () => {
+           let model = {
+                        add: () => {}
+                    }
+            let add = sinon.stub(model, 'add')
+            let controller = new Controller(model)
+            controller.budget.month = "2016-10"
+            controller.budget.amount = -1000
+
+            let result = controller.checkInput()
+
+            result.should.be.false
+    })
 })
