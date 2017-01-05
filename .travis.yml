@@ -1,15 +1,14 @@
-language: python, node_js
+language: python
 python: '2.7'
-node_js: '6'
 before_install:
 - sudo apt-get update -qq
+- nvm install 6.1
+- nvm use 6.1
 install:
 - pip install ansible
 addons:
   sonarqube: true
 
-before_script:
-  - npm install -g gulp
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
