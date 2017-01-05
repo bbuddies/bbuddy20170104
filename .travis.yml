@@ -1,8 +1,6 @@
 language: python, node_js
 python: '2.7'
 node_js: '6'
-before_script:
-  - npm install -g gulp
 before_install:
 - sudo apt-get update -qq
 install:
@@ -10,6 +8,8 @@ install:
 addons:
   sonarqube: true
 
+before_script:
+  - npm install -g gulp
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
