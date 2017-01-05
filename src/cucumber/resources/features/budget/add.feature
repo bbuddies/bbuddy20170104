@@ -8,3 +8,14 @@ Feature: Add Budget
     Then I can see the following budget
       | month   | amount |
       | 2016-02 | 2000   |
+
+  Scenario: Override a new budget
+    Given There is existing record
+      | month   | amount |
+      | 2016-02 | 2000   |
+    When add a budget with the following info
+      | month   | amount |
+      | 2016-02 | 3000   |
+    Then I can see the following budget
+      | month   | amount |
+      | 2016-02 | 3000   |

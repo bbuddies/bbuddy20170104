@@ -4,6 +4,8 @@ import com.odde.bbuddy.budget.repo.BudgetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Budgets {
     private final BudgetRepo budgetRepo;
@@ -14,6 +16,14 @@ public class Budgets {
     }
 
     public void add(Budget budget) {
+        List<Budget> budgetlist = budgetRepo.findAll();
+        for (Budget budgetItem:budgetlist){
+            if (budgetItem.getMonth().equals(budget.getMonth())){
+                budgetItem.setAmount(budget.getAmount());
+                budgetRepo.save(budgetItem);
+                return;
+            }
+        }
         budgetRepo.save(budget);
     }
 }

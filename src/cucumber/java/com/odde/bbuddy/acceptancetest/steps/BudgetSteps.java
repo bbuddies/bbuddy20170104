@@ -4,6 +4,8 @@ import com.odde.bbuddy.acceptancetest.data.budget.BudgetsRepoForTest;
 import com.odde.bbuddy.acceptancetest.data.budget.EditableBudget;
 import com.odde.bbuddy.acceptancetest.driver.UiDriver;
 import com.odde.bbuddy.budget.domain.Budget;
+import cucumber.api.DataTable;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,12 @@ public class BudgetSteps {
         Budget expected = expectedBudgets.get(0);
         assertThat(budget.getMonth()).isEqualTo(expected.getMonth());
         assertThat(budget.getAmount()).isEqualTo(expected.getAmount());
+    }
+
+    @Given("^There is existing record$")
+    public void there_is_existing_record(List<Budget> expectedBudgets) throws Throwable {
+        for(Budget budget : expectedBudgets) {
+            budgetsRepo.save(budget);
+        }
     }
 }
