@@ -30,4 +30,4 @@ Feature: Add Budget
     When add a budget with the following info
       | month   | amount |
       | 2016-10 | -100   |
-    Then I can see error info
+    Then I can see error message

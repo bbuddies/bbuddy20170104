@@ -20,6 +20,9 @@ export default class BudgetsAddController {
         if (int_month < 0 || int_month > 12) {
             return false
         }
+        if (this.budget.amount < 0) {
+                    return false
+        }
         return true
     }
     save(){
