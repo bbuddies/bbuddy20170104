@@ -1,0 +1,12 @@
+gulp_mocha.dependsOn 'npmInstall'
+
+gulp_mocha.dependsOn 'installGulp'
+
+node {
+    nodeModulesDir = file("client")
+}
+
+gulp {
+    workDir = file("client")
+}
+

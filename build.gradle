@@ -1,9 +1,13 @@
+import com.wiredforcode.gradle.spawn.*
+
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE"
+        classpath 'com.wiredforcode:gradle-spawn-plugin:0.6.0'
     }
 }
 
@@ -13,8 +17,18 @@ plugins {
     id "idea"
     id "war"
     id "jacoco"
+    id "com.moowork.gulp" version "1.0.1"
 }
 apply plugin: "spring-boot"
+apply plugin: 'com.wiredforcode.spawn'
+
+task startFrontendServer(type: SpawnProcessTask) {
+    command "cd ${projectDir}/client"
+    command "gulp"
+    ready "Finished 'build-dev' after"
+}
+
+task stopFrontendServer(type: KillProcessTask)
 
 war {
     baseName = "bbuddy"
@@ -24,6 +38,7 @@ war {
 apply from: "gradle/dependency.gradle"
 apply from: "gradle/common.gradle"
 apply from: "gradle/run.gradle"
+apply from: "gradle/gulp.gradle"
 apply from: "gradle/ci.gradle"
 apply from: "gradle/sonar.gradle"
 

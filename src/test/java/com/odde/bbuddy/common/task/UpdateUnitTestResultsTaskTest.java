@@ -41,7 +41,7 @@ public class UpdateUnitTestResultsTaskTest {
     @Before
     public void createTask() throws IOException {
         copyFileToRootFolder("build.gradle");
-        copyFileToGradleFolder("sonar.gradle", "ci.gradle", "run.gradle", "common.gradle", "dependency.gradle");
+        copyFileToGradleFolder("sonar.gradle", "ci.gradle", "run.gradle", "common.gradle", "dependency.gradle", "gulp.gradle");
     }
 
     @Before
