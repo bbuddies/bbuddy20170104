@@ -1,6 +1,4 @@
-gulp_mocha.dependsOn 'npmInstall'
-
-gulp_mocha.dependsOn 'installGulp'
+gulp_mocha.dependsOn 'npmInstall', 'installGulp'
 
 node {
     nodeModulesDir = file("client")
