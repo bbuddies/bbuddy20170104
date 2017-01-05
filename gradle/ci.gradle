@@ -12,7 +12,7 @@ task setFrontendCucumber {
 }
 
 task frontendci {
-    runInSequence(it, "clean", "check", "setFrontendCucumber", "gulp_mocha", "startFrontendServer", "cucumber", "stopFrontendServer")
+    runInSequence(it, "clean", "check", "setFrontendCucumber", "startFrontendServer", "cucumber", "stopFrontendServer")
 }
 
 cucumber {

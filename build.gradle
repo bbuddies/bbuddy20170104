@@ -23,8 +23,7 @@ apply plugin: "spring-boot"
 apply plugin: 'com.wiredforcode.spawn'
 
 task startFrontendServer(type: SpawnProcessTask) {
-    command "cd ${projectDir}/client"
-    command "gulp"
+    command "gulp --cwd ${projectDir}/client"
     ready "Finished 'build-dev' after"
 }
 
