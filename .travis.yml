@@ -6,13 +6,13 @@ before_install:
 - nvm use 7.3
 install:
 - pip install ansible
-- npm install -g gulp-cli
 addons:
   sonarqube: true
 
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
+- bash -lec "npm install -g gulp-cli"
 - bash -lec "npm install gulp --prefix $TRAVIS_BUILD_DIR/client"
 - bash -lec "npm install --prefix $TRAVIS_BUILD_DIR/client"
 - bash -lec "gulp mocha --cwd $TRAVIS_BUILD_DIR/client"
