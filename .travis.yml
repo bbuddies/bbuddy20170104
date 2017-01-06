@@ -13,10 +13,10 @@ script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
 - bash -lec "npm install -g gulp-cli"
-- bash -lec "npm install gulp --prefix $TRAVIS_BUILD_DIR/client"
-- bash -lec "npm install --prefix $TRAVIS_BUILD_DIR/client"
-- bash -lec "gulp mocha --cwd $TRAVIS_BUILD_DIR/client"
-- bash -lec "gradle sonar"
+- bash -lec "npm install gulp --prefix $TRAVIS_BUILD_DIR/client -v"
+- bash -lec "npm install --prefix $TRAVIS_BUILD_DIR/client -v"
+- bash -lec "gulp mocha --cwd $TRAVIS_BUILD_DIR/client -v"
+- bash -lec "gradle sonar -v"
 - bash -lec "sonar-scanner"
 
 notifications:
