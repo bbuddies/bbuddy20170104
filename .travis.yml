@@ -14,6 +14,8 @@ script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
 - bash -lec "npm install gulp --prefix $TRAVIS_BUILD_DIR/client"
 - bash -lec "npm install --prefix $TRAVIS_BUILD_DIR/client"
+- bash -lec "ls $TRAVIS_BUILD_DIR/client"
+- bash -lec "ls $TRAVIS_BUILD_DIR/client/node_modules"
 - bash -lec "gradle sonar"
 - bash -lec "sonar-scanner"
 
