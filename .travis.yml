@@ -2,8 +2,8 @@ language: python
 python: '2.7'
 before_install:
 - sudo apt-get update -qq
-- nvm install 6.1
-- nvm use 6.1
+- nvm install 6.0
+- nvm use 6.0
 install:
 - pip install ansible
 addons:
@@ -14,8 +14,7 @@ script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
 - bash -lec "npm install gulp --prefix $TRAVIS_BUILD_DIR/client"
 - bash -lec "npm install --prefix $TRAVIS_BUILD_DIR/client"
-- bash -lec "ls $TRAVIS_BUILD_DIR/client"
-- bash -lec "ls $TRAVIS_BUILD_DIR/client/node_modules"
+- bash -lec "pwd $TRAVIS_BUILD_DIR/client"
 - bash -lec "gradle sonar"
 - bash -lec "sonar-scanner"
 
