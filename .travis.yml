@@ -12,7 +12,8 @@ addons:
 script:
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt --syntax-check
 - ansible-playbook bbuddy.yml --inventory-file=host_travis_ci.txt
-- bash -lec "npm install -g gulp-cli gulp"
+- bash -lec "npm install -g gulp-cli"
+- bash -lec "npm install gulp --prefix ./client"
 - bash -lec "npm install --prefix ./client"
 - bash -lec "gradle sonar"
 - bash -lec "sonar-scanner"
